@@ -1,0 +1,13 @@
+Oracle round函数是什么意思?怎么运用?
+如何使用 Oracle Round 函数 (四舍五入)
+描述 : 传回一个数值，该数值是按照指定的小数位元数进行四舍五入运算的结果。
+SELECT ROUND( number, [ decimal_places ] ) FROM DUAL
+参数:
+number : 欲处理之数值
+decimal_places : 四舍五入 , 小数取几位 ( 预设为 0 )
+Sample :
+select round(123.456, 0) from dual;          回传 123 
+select round(123.456, 1) from dual;          回传 123.5 
+select round(123.456, 2) from dual;          回传 123.46 
+select round(123.456, 3) from dual;          回传 123.456 
+select round(-123.456, 2) from dual;        回传 -123.46
