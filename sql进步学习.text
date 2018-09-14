@@ -1,2 +1,16 @@
 -- 连接作用！ 也就是可以把两个字段的数据或者某些字符组成我们想要的表达形式
 select '天天' || '向上' from dual
+
+---- A B C  修改A表的date,已知：A表的主键id
+-- A表的date=B表的date || '01',B表的code=C表的code，C表的外键id=A表的主键id。
+-- 更新启用日期check_asset
+update check_asset l
+   set dep_date =
+       (select to_date(book_open_date || '-01', 'yyyy-mm-dd')
+          from base_ou_set
+         where company_code = (select substr(cost_code, 0, 6) cost_code
+                                 from check_asset
+                                where turn_id = l.turn_id
+                                  and rownum = 1)
+           and rownum = 1)
+ where turn_id = ?
